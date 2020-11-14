@@ -13,11 +13,16 @@ const Tab= createBottomTabNavigator();
 export default function Navigation(){
     return(
         <NavigationContainer>
-            <Tab.Navigator initialRouteName="restaurants" 
-            tabBarOptions={{inactiveTintColor : "#646464", activeTintColor: "#00a680"}}
-            screenOptions={({ route })=>({
-                tabBarIcon:({color})=>screenOptions(route,color)
-            })} >
+           <Tab.Navigator
+        initialRouteName="restaurants"
+        tabBarOptions={{
+          inactiveTintColor: "#646464",
+          activeTintColor: "#00a680",
+        }}
+        screenOptions={({ route }) => ({
+          tabBarIcon: ({ color }) => screenOptions(route, color),
+        })}
+      >
                 <Tab.Screen name="restaurants" component={RestaurantsStack}
                  options={{ title:"Restaurantes" }}/>
                 <Tab.Screen name="account" component={AccountStack}
@@ -39,13 +44,23 @@ export default function Navigation(){
                 case "restaurants":
                     iconName="compass-outline"
                     break;
-            
+                case "favorites":
+                    iconName="heart-outline"
+                    break;
+                case "account":
+                    iconName="home-outline"
+                    break;
+                case "topRestaurants":
+                    iconName="star-outline"
+                    break;
+                case "search":
+                    iconName="magnify"
+                    break;
                 default:
                     break;
             }
-            return(
-                <Icon type="material-community" 
-                iconName={iconName} size={22} color={color}></Icon>
-            )
+            return (
+    <Icon type="material-community" name={iconName} size={22} color={color} />
+  );
         }
 };
